@@ -3,163 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swaraj Kumar Behera | Portfolio</title>
+    <title>Swaraj Kumar Behera | Analytics Portfolio</title>
     <style>
         :root { 
-            --primary: #2d3436; 
-            --accent: #0984e3; 
-            --text: #636e72; 
-            --bg: #f5f6fa; 
-            --transition: all 0.3s ease-in-out;
+            --primary: #0f172a; 
+            --accent: #38bdf8; 
+            --glass: rgba(255, 255, 255, 0.03);
+            --text: #f1f5f9;
         }
 
-        /* Smooth Scroll & Fade-in Animation */
-        html { scroll-behavior: smooth; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         body { 
-            font-family: 'Segoe UI', sans-serif; 
-            line-height: 1.6; 
-            color: var(--text); 
-            background: var(--bg); 
-            margin: 0; 
-            animation: fadeInUp 0.8s ease-out;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
         }
 
-        header { 
-            background: white; 
-            padding: 3rem 10%; 
-            text-align: center; 
-            border-bottom: 3px solid var(--accent);
-            transition: var(--transition);
+        /* Glassmorphism Header */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
         }
 
-        /* Profile Picture Styling */
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 180px; height: 180px;
             border-radius: 50%;
+            border: 3px solid var(--accent);
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
             object-fit: cover;
-            border: 4px solid var(--accent);
-            margin-bottom: 20px;
-            transition: transform 0.5s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .profile-img:hover {
-            transform: scale(1.05) rotate(2deg);
         }
 
-        .container { width: 80%; margin: auto; padding: 20px; }
-        
+        .container { width: 85%; margin: auto; padding-bottom: 100px; }
+
         .section-title { 
-            color: var(--primary); 
-            border-left: 5px solid var(--accent); 
-            padding-left: 15px; 
-            margin: 40px 0 20px; 
+            font-size: 2.5rem; 
+            margin: 60px 0 30px; 
+            color: var(--accent);
+            animation: slideIn 1s ease-out;
         }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
-        /* Card Hover Transitions */
-        .card { 
-            background: white; 
-            padding: 25px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            border: 1px solid transparent;
+        /* Moving Project Cards */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 25px; 
         }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(5px);
+        }
+
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            background: rgba(56, 189, 248, 0.1);
+            transform: scale(1.05) translateY(-10px);
             border-color: var(--accent);
         }
 
-        .card h3 { color: var(--accent); margin-top: 0; }
-        .tag { 
-            background: #dfe6e9; 
-            padding: 4px 10px; 
-            border-radius: 20px; 
-            font-size: 0.75rem; 
-            margin-right: 5px;
-            transition: background 0.3s;
+        .experience-box {
+            border-left: 2px solid var(--accent);
+            padding-left: 30px;
+            margin-left: 20px;
+            position: relative;
         }
-        .card:hover .tag { background: var(--accent); color: white; }
 
-        footer { text-align: center; padding: 40px; background: var(--primary); color: white; margin-top: 50px; }
-        a { color: var(--accent); text-decoration: none; font-weight: bold; transition: var(--transition); }
-        a:hover { color: var(--primary); }
+        .experience-item {
+            margin-bottom: 40px;
+            animation: slideIn 1.2s ease-out;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 5px;
+            width: 16px; height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        footer { text-align: center; padding: 50px; opacity: 0.6; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="profile.jpg" alt="Swaraj Kumar Behera" class="profile-img">
-    <h1>Swaraj Kumar Behera [cite: 2]</h1>
-    <p>Data Analyst | Business Analyst | PGDM Marketing & Business Analytics [cite: 22]</p>
-    <p>
-        <a href="mailto:swarajkumarbehe8@gmail.com">Email [cite: 3]</a> | 
-        <a href="https://linkedin.com/in/swarajkumarbehera/">LinkedIn [cite: 5]</a> | 
-        +91 8847825552 [cite: 4]
-    </p>
+    <img src="profile.jpg" alt="Swaraj" class="profile-img">
+    <h1 style="font-size: 3.5rem; margin: 10px 0;">Swaraj Kumar Behera</h1>
+    <p style="font-size: 1.2rem; opacity: 0.8;">Data Analysis | Business Intelligence | Growth Strategy</p>
+    <div style="margin-top: 20px;">
+        <a href="#projects" style="color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 10px 25px; border-radius: 50px;">View My Work</a>
+    </div>
 </header>
 
-<div class="container">
-    <h2 class="section-title">About Me</h2>
-    <p>
-        Results-driven professional with a PGDM in Marketing & Business Analytics from ISB&M Pune [cite: 20, 22] and a B.Tech in Computer Science from CUTM Bhubaneswar[cite: 23, 24]. I specialize in bridging the gap between raw data and strategic business decisions using SQL, Python, and Power BI[cite: 6, 7].
-    </p>
-
-    <h2 class="section-title">Featured Projects</h2>
+<div class="container" id="projects">
+    <h2 class="section-title">Projects Portfolio</h2>
     <div class="grid">
         <div class="card">
-            <h3>Retail Sales Performance Dashboard</h3>
-            <p>End-to-end Power BI solution tracking regional KPIs and YoY growth for a multi-chain retailer.</p>
-            <div><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span></div>
+            <h3>Salifort Motors HR Analytics</h3>
+            <p>Built a Logistic Regression model (~78% accuracy) to predict employee turnover for 1,000+ staff[cite: 28, 29, 30].</p>
+            <div><span class="tag">Python</span><span class="tag">Logistic Regression</span><span class="tag">EDA</span></div>
         </div>
+
         <div class="card">
-            <h3>E-commerce Customer Segmentation</h3>
-            <p>RFM analysis using SQL and Python to identify high-value customer clusters and retention strategies.</p>
-            <div><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Pandas</span></div>
+            <h3>Amazon (Singapore) UX Analysis</h3>
+            <p>Identified root causes of top service complaints and reduced processing delays by 2+ hours daily[cite: 34, 35, 37].</p>
+            <div><span class="tag">Gap Analysis</span><span class="tag">Process Mapping</span></div>
         </div>
+
         <div class="card">
-            <h3>Real Estate Market Predictor</h3>
-            <p>Predictive modeling using linear regression to estimate property values in the Bangalore market.</p>
-            <div><span class="tag">Machine Learning</span><span class="tag">EDA</span><span class="tag">Python</span></div>
+            <h3>COVID-19 Global Trends Tracker</h3>
+            <p>Automated the extraction of 200+ datasets using Python APIs to visualize infection and recovery patterns[cite: 38, 39, 41].</p>
+            <div><span class="tag">Python APIs</span><span class="tag">Automation</span><span class="tag">BI Dashboards</span></div>
         </div>
+
         <div class="card">
-            <h3>Logistics Efficiency Analysis</h3>
-            <p>Advanced Excel modeling that identified bottlenecks, reducing processing delays by over 2 hours daily.</p>
-            <div><span class="tag">Advanced Excel</span><span class="tag">Business Analysis</span></div>
+            <h3>Campaign Conversion Optimizer</h3>
+            <p>Analyzed market trends to launch 4 targeted campaigns, improving client conversion by 30%[cite: 16, 17].</p>
+            <div><span class="tag">Market Research</span><span class="tag">Strategy</span></div>
         </div>
     </div>
 
-    <h2 class="section-title">Technical Expertise</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Data Analysis & Programming</h3>
+    <h2 class="section-title">Professional Journey</h2>
+    <div class="experience-box">
+        <div class="experience-item">
+            <h3 style="color: var(--accent);">Address Advisors, Bangalore</h3>
+            <p><strong>Business Development Intern | Apr 2023 - Jun 2023</strong> [cite: 12, 13, 14]</p>
             <ul>
-                <li>SQL (Joins, Subqueries, CTES) [cite: 6]</li>
-                <li>Python (Pandas, NumPy) [cite: 6]</li>
-                <li>Advanced Microsoft Excel [cite: 6]</li>
+                <li>Closed property deals exceeding 3 Cr in total value through data-driven initiatives.</li>
+                <li>Increased qualified leads by 15% via client engagement insights[cite: 18].</li>
             </ul>
         </div>
+    </div>
+
+    <h2 class="section-title">Education</h2>
+    <div class="grid">
         <div class="card">
-            <h3>Visualization & BI Tools</h3>
-            <ul>
-                <li>Power BI (DAX, Interactive Dashboards) [cite: 7]</li>
-                <li>Tableau & Excel Charts [cite: 7]</li>
-                <li>KPI Tracking & Reporting [cite: 9]</li>
-            </ul>
+            <h3>PGDM - Marketing & Analytics</h3>
+            <p>ISB&M, Pune (2022-2024) [cite: 20, 21]</p>
+            <p><strong>CGPA: 4.45 / 6</strong> [cite: 21]</p>
+            <span class="tag">Consumer Behavior</span><span class="tag">Stats</span>
+        </div>
+        <div class="card">
+            <h3>B.Tech - Computer Science</h3>
+            <p>CUTM, Bhubaneswar (2017-2021) [cite: 23, 25]</p>
+            <p><strong>CGPA: 8 / 10</strong> [cite: 25]</p>
+            <span class="tag">DBMS</span><span class="tag">Data Structures</span><span class="tag">AI</span>
         </div>
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2026 Swaraj Kumar Behera. Built with Precision.</p>
+    <p>Connect: <a href="mailto:swarajkumarbehe8@gmail.com" style="color: var(--accent);">swarajkumarbehe8@gmail.com</a> | +91 8847825552 [cite: 3, 4]</p>
 </footer>
 
 </body>
