@@ -97,8 +97,7 @@
 <body>
 
 <header>
-    <img src="C:\Users\ASUS\Downloads\Swaraj.jpeg
-        " alt="Swaraj Kumar Behera" class="profile-img">
+    <img src="profile.jpg" alt="Swaraj Kumar Behera" class="profile-img">
     <h1>Swaraj Kumar Behera [cite: 2]</h1>
     <p>Data Analyst | Business Analyst | PGDM Marketing & Business Analytics [cite: 22]</p>
     <p>
